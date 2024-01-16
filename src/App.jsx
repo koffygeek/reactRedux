@@ -1,9 +1,10 @@
 import './App.css'
-import { ADD_FRUIT } from './redux/actionType'
 import {legacy_createStore as createStore} from "redux"
-import { addFruit } from './redux/action'
+// import { addFruit,deleteFruit,addQuantityFruit,updateQuantityFruit } from './redux/action'
 import { fruitReducer } from './redux/reducer'
-import { deleteFruit } from './redux/action'
+import { Provider } from 'react-redux'
+import Cart from './component/Cart'
+import AddFruit from './component/AddFruit'
 
 
 
@@ -26,11 +27,13 @@ const store = createStore(fruitReducer);
 // store.dispatch({type:ADD_FRUIT,payload:{id:3,fruit:'🍐',quantity:5}})
 // store.dispatch({type:ADD_FRUIT,payload:{id:4,fruit:'🍒',quantity:9}})
 
-const unsubscribe = store.subscribe(()=>console.log(store.getState()))
-store.dispatch(addFruit(1,'🍐',3))
-store.dispatch(addFruit(2,'🍑',6))
-store.dispatch(addFruit(3,'🍒',7))
-store.dispatch(deleteFruit(2))
+// const unsubscribe = store.subscribe(()=>console.log(store.getState()))
+// store.dispatch(addFruit(1,'🍐',3))
+// store.dispatch(addFruit(2,'🍑',6))
+// store.dispatch(addFruit(3,'🍒',7))
+// store.dispatch(deleteFruit(2))
+// store.dispatch(addQuantityFruit(1))
+// store.dispatch(updateQuantityFruit(2,1000))
 
 // console.log(store.getState())
 
@@ -41,14 +44,14 @@ store.dispatch(deleteFruit(2))
 
 function App() {
 
-
-
-
-
   return (
-    <>
-        { }
-    </>
+    
+      <Provider store={store}>
+      <Cart />
+      <AddFruit/>
+      </Provider>
+      
+    
   )
 }
 
